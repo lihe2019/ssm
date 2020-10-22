@@ -13,6 +13,10 @@ public class BookServiceImpl implements BookService {
 
     private BookMapper bookMapper;
 
+    public BookMapper getBookMapper() {
+        return bookMapper;
+    }
+
     public void setBookMapper(BookMapper bookMapper) {
         this.bookMapper = bookMapper;
     }
@@ -22,10 +26,11 @@ public class BookServiceImpl implements BookService {
     }
 
     public int deleteBookById(int id) {
-        return deleteBookById(id);
+        return bookMapper.deleteBookById(id);
     }
 
     public int updateBook(Books books) {
+        System.out.println("BookServiceImpl:updateBook=>" + books);
         return bookMapper.updateBook(books);
     }
 
@@ -35,5 +40,9 @@ public class BookServiceImpl implements BookService {
 
     public List<Books> queryAllBook() {
         return bookMapper.queryAllBook();
+    }
+
+    public Books queryBookByName(String bookName) {
+        return bookMapper.queryBookByName(bookName);
     }
 }
